@@ -1,7 +1,8 @@
-package com.example.adventurexp.controller;
+package org.example.adventurexp.controller;
 
-import com.example.adventurexp.model.Admin;
-import com.example.adventurexp.repository.AdminRepository;
+import org.example.adventurexp.model.Admin;
+import org.example.adventurexp.repository.AdminRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -16,13 +17,14 @@ public class AdminController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password) {
-        Optional<Admin> admin = adminRepository.findByUsernameAndPassword(username, password);
+    public ResponseEntity<String> login(@RequestBody Admin loginRequest) {
+        Optional<Admin> admin = adminRepository.findByUsernameAndPassword(
+                loginRequest.getUsername(), loginRequest.getPassword());
 
         if (admin.isPresent()) {
-            return "Login successful!";
+            return ResponseEntity.ok("Login successful!");
         } else {
-            return "Invalid credentials.";
+            return ResponseEntity.status(401).body("Invalid credentials.");
         }
     }
 }
