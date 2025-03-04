@@ -1,6 +1,6 @@
-package com.example.adventurexpbackend.repository;
+package com.example.adventurexp.repository;
 
-import com.example.adventurexpbackend.model.Admin;
+import com.example.adventurexp.model.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
