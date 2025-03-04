@@ -1,4 +1,4 @@
-package com.example.adventurexp.model;
+package org.example.adventurexp.model;
 import jakarta.persistence.*;
 
 @Entity
