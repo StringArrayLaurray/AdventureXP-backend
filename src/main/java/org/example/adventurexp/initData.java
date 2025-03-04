@@ -2,8 +2,12 @@ package org.example.adventurexp;
 
 import org.example.adventurexp.model.Activity;
 import org.example.adventurexp.model.Booking;
+import org.example.adventurexp.model.Employee;
+import org.example.adventurexp.model.Admin;
 import org.example.adventurexp.repository.ActivityRepository;
 import org.example.adventurexp.repository.BookingRepository;
+import org.example.adventurexp.repository.EmployeeRepository;
+import org.example.adventurexp.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -22,6 +26,12 @@ public class initData implements CommandLineRunner {
 
     @Autowired
     private BookingRepository bookingRepository;
+    
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private AdminRepository adminRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -56,6 +66,20 @@ public class initData implements CommandLineRunner {
                 )
         );
         bookingRepository.saveAll(bookingList);
-    }
+
+
+employeeRepository.save(new Employee("Jimmy Carter"));
+        employeeRepository.save(new Employee("Appelsina"));
+        employeeRepository.save(new Employee("Viski"));
+        employeeRepository.save(new Employee("Michael Jackson"));
+        employeeRepository.save(new Employee("David Bowie"));
+        employeeRepository.save(new Employee("Tessa Okay"));
+        employeeRepository.save(new Employee("Peter Parker"));
+        employeeRepository.save(new Employee("Bella Swan"));
+
+        adminRepository.save(new Admin("admin1", "password123"));
+        adminRepository.save(new Admin("admin2", "123password"));
+ 
 }
 
+}
