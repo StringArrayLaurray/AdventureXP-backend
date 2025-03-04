@@ -1,7 +1,7 @@
-package com.example.adventurexpbackend.controller;
+package com.example.adventurexp.controller;
 
-import com.example.adventurexpbackend.model.Admin;
-import com.example.adventurexpbackend.repository.AdminRepository;
+import com.example.adventurexp.model.Admin;
+import com.example.adventurexp.repository.AdminRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
