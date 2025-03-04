@@ -1,7 +1,7 @@
-package com.example.adventurexp.controller;
+package org.example.adventurexp.controller;
 
-import com.example.adventurexp.model.Employee;
-import com.example.adventurexp.repository.EmployeeRepository;
+import org.example.adventurexp.model.Employee;
+import org.example.adventurexp.repository.EmployeeRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
