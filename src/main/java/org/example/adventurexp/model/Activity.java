@@ -2,6 +2,9 @@ package org.example.adventurexp.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "activity")
 public class Activity {
@@ -14,9 +17,15 @@ public class Activity {
     private int duration;
     private int minHeight;
 
+    @ManyToMany
+    @JoinTable(
+            name = "activity_instructor",
+            joinColumns = @JoinColumn(name = "activity_id"),
+            inverseJoinColumns = @JoinColumn(name = "instructor_id")
+    )
+    private List<Instructor> instructors = new ArrayList<>();
 
     public Activity(){}
-
     public Activity(String name, int minAge, int duration, int minHeight) {
         this.name = name;
         this.minAge = minAge;
@@ -62,5 +71,13 @@ public class Activity {
 
     public void setMinHeight(int minHeight) {
         this.minHeight = minHeight;
+    }
+
+    public List<Instructor> getInstructors() {
+        return instructors;
+    }
+
+    public void setInstructors(List<Instructor> instructors) {
+        this.instructors = instructors;
     }
 }

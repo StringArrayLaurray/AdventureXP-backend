@@ -16,16 +16,16 @@ public class Booking {
     private int id;
     private LocalDate date;
     private LocalTime time;
+    private boolean isBusinessBooking = false;
 
     @ElementCollection
     @CollectionTable(name = "booking_participants", joinColumns = @JoinColumn(name = "booking_id"))
     @Column(name = "participants")
     private List<String> participants = new ArrayList<>();
 
-
     @ManyToMany
     @JoinTable(
-            name = "booking_activity", // Name of the join table
+            name = "booking_activity",
             joinColumns = @JoinColumn(name = "booking_id"), // Foreign key for Booking
             inverseJoinColumns = @JoinColumn(name = "activity_id") // Foreign key for Activity
     )
@@ -33,9 +33,10 @@ public class Booking {
 
     public Booking(){}
 
-    public Booking(LocalDate date, LocalTime time, List<String> participants, List<Activity> activities) {
+    public Booking(LocalDate date, LocalTime time, boolean isBusinessBooking, List<String> participants, List<Activity> activities) {
         this.date = date;
         this.time = time;
+        this.isBusinessBooking = isBusinessBooking;
         this.participants = participants;
         this.activities = activities;
     }
@@ -70,5 +71,13 @@ public class Booking {
 
     public void setActivities(List<Activity> activities) {
         this.activities = activities;
+    }
+
+    public boolean isBusinessBooking() {
+        return isBusinessBooking;
+    }
+
+    public void setBusinessBooking(boolean businessBooking) {
+        isBusinessBooking = businessBooking;
     }
 }

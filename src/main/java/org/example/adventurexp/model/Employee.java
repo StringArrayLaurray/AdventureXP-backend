@@ -1,6 +1,7 @@
 package org.example.adventurexp.model;
 
 import jakarta.persistence.*;
+
 @Entity
 public class Employee {
 
