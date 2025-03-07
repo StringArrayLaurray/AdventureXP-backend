@@ -27,14 +27,9 @@ public class initData implements CommandLineRunner {
     @Autowired
     private AdminRepository adminRepository;
 
-    @Autowired
-    private InstructorRepository instructorRepository;
 
     @Override
     public void run(String... args) throws Exception {
-        Instructor instructor1 = new Instructor("Johan");
-        Instructor instructor2 = new Instructor("Marie");
-        Instructor instructor3 = new Instructor("Tessa");
 
         Activity gokart = new Activity("Gokart", 12, 60, 160);
         Activity paintball = new Activity("Paintball", 15, 60, 0);
@@ -43,20 +38,6 @@ public class initData implements CommandLineRunner {
         Activity minigolf = new Activity("Minigolf", 0, 30, 0);
         Activity archery = new Activity("Archery", 8, 45, 100);
 
-        instructor1.setActivitiesToInstruct(List.of(gokart, sumo));
-        instructor2.setActivitiesToInstruct(List.of(paintball, minigolf));
-        instructor3.setActivitiesToInstruct(List.of(archery, lasertag, paintball));
-
-        gokart.setInstructors(List.of(instructor1));
-        paintball.setInstructors(List.of(instructor2));
-        lasertag.setInstructors(List.of(instructor3));
-        sumo.setInstructors(List.of(instructor1));
-        minigolf.setInstructors(List.of(instructor2));
-        archery.setInstructors(List.of(instructor3));
-
-        instructorRepository.save(instructor1);
-        instructorRepository.save(instructor2);
-        instructorRepository.save(instructor3);
 
         activityRepository.save(gokart);
         activityRepository.save(paintball);

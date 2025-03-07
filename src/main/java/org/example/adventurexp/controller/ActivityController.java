@@ -45,6 +45,7 @@ public class ActivityController {
         return ResponseEntity.notFound().build();
     }
 
+    // lav update færdig
     @PutMapping("/{id}")
     public ResponseEntity<Activity> updateActivity(@PathVariable int id, @RequestBody Activity updatedActivity) {
         return activityRepository.findById(id)
@@ -53,6 +54,7 @@ public class ActivityController {
                     existingActivity.setMinAge(updatedActivity.getMinAge());
                     existingActivity.setDuration(updatedActivity.getDuration());
                     existingActivity.setMinHeight(updatedActivity.getMinHeight());
+                    existingActivity.setInstructors(updatedActivity.getInstructors());
 
                     activityRepository.save(existingActivity);
                     return ResponseEntity.ok(existingActivity);

@@ -35,4 +35,31 @@ public class BookingController {
         Booking savedBooking = bookingRepository.save(booking);
         return new ResponseEntity<>(savedBooking, HttpStatus.CREATED);
     }
+
+    // deletemapping
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Booking> deleteById(@PathVariable int id){
+        if (bookingRepository.existsById(id)) {
+            bookingRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    // updatemapping
+    @PutMapping("/{id}")
+    public ResponseEntity<Booking> updateActivity(@PathVariable int id, @RequestBody Booking updatedBooking) {
+        return bookingRepository.findById(id)
+                .map(existingActivity -> {
+                    existingActivity.setDate(updatedBooking.getDate());
+                    existingActivity.setTime(updatedBooking.getTime());
+                    existingActivity.setBusinessBooking(updatedBooking.isBusinessBooking());
+                    existingActivity.setParticipants(updatedBooking.getParticipants());
+                    existingActivity.setActivities(updatedBooking.getActivities());
+
+                    bookingRepository.save(existingActivity);
+                    return ResponseEntity.ok(existingActivity);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

@@ -17,13 +17,12 @@ public class Activity {
     private int duration;
     private int minHeight;
 
-    @ManyToMany
+    @OneToMany
     @JoinTable(
             name = "activity_instructor",
             joinColumns = @JoinColumn(name = "activity_id"),
-            inverseJoinColumns = @JoinColumn(name = "instructor_id")
-    )
-    private List<Instructor> instructors = new ArrayList<>();
+            inverseJoinColumns = @JoinColumn(name = "instructor_id"))
+    private List<Employee> instructors = new ArrayList<>();
 
     public Activity(){}
     public Activity(String name, int minAge, int duration, int minHeight) {
@@ -73,11 +72,11 @@ public class Activity {
         this.minHeight = minHeight;
     }
 
-    public List<Instructor> getInstructors() {
+    public List<Employee> getInstructors() {
         return instructors;
     }
 
-    public void setInstructors(List<Instructor> instructors) {
+    public void setInstructors(List<Employee> instructors) {
         this.instructors = instructors;
     }
 }
