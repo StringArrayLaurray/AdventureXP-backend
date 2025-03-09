@@ -8,9 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class initData implements CommandLineRunner {
@@ -27,6 +25,12 @@ public class initData implements CommandLineRunner {
     @Autowired
     private AdminRepository adminRepository;
 
+
+    @Autowired
+    private ShopRepository shopRepository;
+
+    @Autowired
+    private ShopItemsRepository shopItemsRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -91,6 +95,48 @@ public class initData implements CommandLineRunner {
         adminRepository.save(new Admin("admin2", "123password"));
 
 
+        //Shop
+        Shop shop = new Shop();
+        shop.setName("AdventureXP Shop");
+        shop.setDescription("I denne shop kan du købe alt fra t-shirts til slik!");
+
+        ShopItems tShirt = new ShopItems();
+        tShirt.setName("AdventureXP merch T-shirt");
+        tShirt.setPrice(150.00);
+        tShirt.setItemType("Clothing");
+        tShirt.setDescription("Lavet af 100% bomuld og 100% vinder");
+        tShirt.setQuantity(50);
+        tShirt.setSize("Unisex");
+        tShirt.setFlavor(null);
+
+        ShopItems soda = new ShopItems();
+        soda.setName("Coca Cola");
+        soda.setPrice(25.00);
+        soda.setItemType("Beverage");
+        soda.setDescription("Forfriskende læskedrik");
+        soda.setQuantity(200);
+        soda.setSize("330ml");
+        soda.setFlavor("Coca Cola");
+
+        ShopItems candy = new ShopItems();
+        candy.setName("Click Mix");
+        candy.setPrice(45.00);
+        candy.setItemType("Candy");
+        candy.setDescription("Alles favorit!");
+        candy.setQuantity(200);
+        candy.setSize(null);
+        candy.setFlavor("Sweet and sour");
+
+
+        //Tilføjer shopItems til shop
+        Set<ShopItems> items = new HashSet<>();
+        items.add(tShirt);
+        items.add(soda);
+        items.add(candy);
+
+        shop.setShopItems(items);
+
+        shopRepository.save(shop);
 
 }
 
