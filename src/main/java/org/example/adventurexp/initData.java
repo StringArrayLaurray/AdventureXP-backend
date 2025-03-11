@@ -38,6 +38,7 @@ public class initData implements CommandLineRunner {
         Activity minigolf = new Activity("Minigolf", 0, 30, 0);
         Activity archery = new Activity("Archery", 8, 45, 100);
 
+        gokart.setDescription("some desciption about gokart. wroomwroom - very fast");
 
         activityRepository.save(gokart);
         activityRepository.save(paintball);

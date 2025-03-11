@@ -13,6 +13,7 @@ public class Activity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    private String description;
     private int minAge;
     private int duration;
     private int minHeight;
@@ -78,5 +79,13 @@ public class Activity {
 
     public void setInstructors(List<Employee> instructors) {
         this.instructors = instructors;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

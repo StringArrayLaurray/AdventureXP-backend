@@ -51,6 +51,7 @@ public class ActivityController {
         return activityRepository.findById(id)
                 .map(existingActivity -> {
                     existingActivity.setName(updatedActivity.getName());
+                    existingActivity.setDescription(updatedActivity.getDescription());
                     existingActivity.setMinAge(updatedActivity.getMinAge());
                     existingActivity.setDuration(updatedActivity.getDuration());
                     existingActivity.setMinHeight(updatedActivity.getMinHeight());
