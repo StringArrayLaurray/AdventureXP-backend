@@ -37,7 +37,7 @@ public class ActivityController {
     }
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Activity> deleteById(@PathVariable int id){
+    public ResponseEntity<Void> deleteById(@PathVariable int id){
         if (activityRepository.existsById(id)) {
             activityRepository.deleteById(id);
          return ResponseEntity.noContent().build();

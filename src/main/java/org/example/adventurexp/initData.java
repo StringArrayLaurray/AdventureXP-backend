@@ -35,6 +35,7 @@ public class initData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        // Tilføj description i constructor of initData før aflevering
         Activity gokart = new Activity("Gokart", 12, 60, 160);
         Activity paintball = new Activity("Paintball", 15, 60, 0);
         Activity lasertag = new Activity("Lasertag", 0, 120, 0);
