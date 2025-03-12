@@ -1,5 +1,6 @@
 package org.example.adventurexp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -14,7 +15,9 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "UTC")
     private LocalDate date;
+    @JsonFormat(pattern = "HH:mm", timezone = "UTC")
     private LocalTime time;
     private boolean isBusinessBooking = false;
 
