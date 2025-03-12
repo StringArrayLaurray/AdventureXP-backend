@@ -1,12 +1,15 @@
 package org.example.adventurexp.controller;
 
+import org.example.adventurexp.model.Activity;
 import org.example.adventurexp.model.Booking;
+import org.example.adventurexp.repository.ActivityRepository;
 import org.example.adventurexp.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,6 +19,9 @@ public class BookingController {
 
     @Autowired
     private BookingRepository bookingRepository;
+
+    @Autowired
+    private ActivityRepository activityRepository;
 
     @GetMapping("/all")
     public List<Booking> getALlBookings(){
@@ -30,11 +36,33 @@ public class BookingController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking){
-        // System.out.println(booking.isActive());
+    public ResponseEntity<?> createBooking(@RequestBody Booking booking) {
+        System.out.println("📥 Modtager booking request: " + booking);
+
+        List<Activity> matchedActivities = new ArrayList<>();
+
+
+        for (Activity a : booking.getActivities()) {
+            Activity foundActivity = activityRepository.findByNameIgnoreCase(a.getName());
+            if (foundActivity != null) {
+                matchedActivities.add(foundActivity);
+            }
+        }
+
+
+        if (matchedActivities.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Fejl: Ingen gyldige aktiviteter fundet.");
+        }
+
+
+        booking.setActivities(matchedActivities);
+
         Booking savedBooking = bookingRepository.save(booking);
-        return new ResponseEntity<>(savedBooking, HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedBooking);
     }
+
+
 
     // deletemapping
     @DeleteMapping("delete/{id}")
