@@ -1,7 +1,9 @@
 package org.example.adventurexp.controller;
 
 import org.example.adventurexp.model.Activity;
+import org.example.adventurexp.model.Booking;
 import org.example.adventurexp.repository.ActivityRepository;
+import org.example.adventurexp.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,9 @@ public class ActivityController {
 
     @Autowired
     private ActivityRepository activityRepository;
+
+    @Autowired
+    private BookingRepository bookingRepository;
 
     @GetMapping("/all")
     public List<Activity> getALlActivities(){
@@ -38,11 +43,19 @@ public class ActivityController {
 
     @DeleteMapping("delete/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable int id){
-        if (activityRepository.existsById(id)) {
-            activityRepository.deleteById(id);
-         return ResponseEntity.noContent().build();
+        if (!activityRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+
+        List<Booking> bookings = bookingRepository.findByActivities_Id(id);
+
+        for (Booking booking : bookings) {
+            booking.getActivities().removeIf(activity -> activity.getId() == id);
+            bookingRepository.save(booking);
+        }
+
+        activityRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     // lav update færdig
