@@ -44,6 +44,11 @@ public class initData implements CommandLineRunner {
         Activity archery = new Activity("Archery", 8, 45, 100);
 
         gokart.setDescription("some desciption about gokart. wroomwroom - very fast");
+        paintball.setDescription("Shoot your friends without real damage");
+        lasertag.setDescription("Loose yourself in the warfare of lasers");
+        sumo.setDescription("Wrestle your friends without real damage");
+        minigolf.setDescription("Almost like golf but the easy version");
+        archery.setDescription("Aim for the heart");
 
         activityRepository.save(gokart);
         activityRepository.save(paintball);
