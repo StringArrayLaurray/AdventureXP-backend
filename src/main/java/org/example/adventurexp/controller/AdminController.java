@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping("/admins")
+@CrossOrigin(origins = "*")
 public class AdminController {
     private final AdminRepository adminRepository;
 
@@ -26,5 +28,15 @@ public class AdminController {
         } else {
             return ResponseEntity.status(401).body("Invalid credentials.");
         }
+    }
+
+    // Handle OPTIONS request for preflight
+    @RequestMapping(method = RequestMethod.OPTIONS)
+    public ResponseEntity<?> handleOptions() {
+        return ResponseEntity.ok()
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "POST, OPTIONS")
+                .header("Access-Control-Allow-Headers", "Content-Type, Authorization")
+                .build();
     }
 }
