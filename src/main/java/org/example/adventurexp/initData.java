@@ -98,8 +98,9 @@ public class initData implements CommandLineRunner {
         employeeRepository.save(new Employee("Peter Parker"));
         employeeRepository.save(new Employee("Bella Swan"));
 
-        adminRepository.save(new Admin("admin1", "password123"));
-        adminRepository.save(new Admin("admin2", "123password"));
+//        udkommentaeret pga af duplicates fuckede deployment op.
+//        adminRepository.save(new Admin("admin1", "password123"));
+//        adminRepository.save(new Admin("admin2", "123password"));
 
 
         //Shop
