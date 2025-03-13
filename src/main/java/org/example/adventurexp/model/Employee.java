@@ -14,15 +14,10 @@ public class Employee {
 
     public Employee(){}
 
-    public Employee(Long id, String name, int phone, String email){
-        this.id = id;
+    public Employee(String name, int phone, String email){
         this.name = name;
         this.phone = phone;
         this.email = email;
-    }
-
-    public Employee(String name){
-        this.name = name;
     }
 
 

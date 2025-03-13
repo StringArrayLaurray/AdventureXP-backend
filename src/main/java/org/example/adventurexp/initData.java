@@ -89,18 +89,18 @@ public class initData implements CommandLineRunner {
         bookingRepository.saveAll(bookingList);
 
 
-        employeeRepository.save(new Employee("Jimmy Carter"));
-        employeeRepository.save(new Employee("Appelsina"));
-        employeeRepository.save(new Employee("Viski"));
-        employeeRepository.save(new Employee("Michael Jackson"));
-        employeeRepository.save(new Employee("David Bowie"));
-        employeeRepository.save(new Employee("Tessa Okay"));
-        employeeRepository.save(new Employee("Peter Parker"));
-        employeeRepository.save(new Employee("Bella Swan"));
+        employeeRepository.save(new Employee("Jimmy Carter", 12341234 , "mrpresident@yahoo.com"));
+        employeeRepository.save(new Employee("Appelsina", 88888888, "babushka@gmail.com"));
+        employeeRepository.save(new Employee("Viski", 32451189, "kattevillevaelge@hotmail.com"));
+        employeeRepository.save(new Employee("Michael Jackson", 23441278, "mydoctordidit@MJ.com"));
+        employeeRepository.save(new Employee("David Bowie", 67223877, "bowieisaknife@gmail.com"));
+        employeeRepository.save(new Employee("Tessa Okay", 89772345, "vestegnen4evar@hotmail.com"));
+        employeeRepository.save(new Employee("Peter Parker", 12333451, "spiderboii@yahoo.com"));
+        employeeRepository.save(new Employee("Bella Swan", 89998863, "vampirebiih@gmail.com"));
 
 //        udkommentaeret pga af duplicates fuckede deployment op.
-//        adminRepository.save(new Admin("admin1", "password123"));
-//        adminRepository.save(new Admin("admin2", "123password"));
+        adminRepository.save(new Admin("admin1", "password123"));
+        adminRepository.save(new Admin("admin2", "123password"));
 
 
         //Shop
